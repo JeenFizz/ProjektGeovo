@@ -24,4 +24,4 @@ public abstract class Main {
 		view.setController(controller);
 		controller.control();
 	}
-}ze'r('r"t('(tr('rt)
+}
