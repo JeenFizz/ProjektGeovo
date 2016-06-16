@@ -12,14 +12,14 @@ import contract.IModel;
  */
 public class Model extends Observable implements IModel {
 
-	/** The message. */
-	private String message;
+	/** The map. */
+	private String Map;
 
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
-		this.message = "";
+		this.Map = "";
 	}
 
 	/*
@@ -27,18 +27,18 @@ public class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage()
 	 */
-	public String getMessage() {
-		return this.message;
+	public String getMap() {
+		return this.Map;
 	}
 
 	/**
-	 * Sets the message.
+	 * Sets the map.
 	 *
-	 * @param message
-	 *          the new message
+	 * @param map
+	 *          the new map
 	 */
-	private void setMessage(final String message) {
-		this.message = message;
+	private void setMap(final String Map) {
+		this.Map = Map;
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -48,10 +48,10 @@ public class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	public void loadMessage(final String key) {
+	public void loadMap(final int id) {
 		try {
 			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
-			this.setMessage(daoHelloWorld.find(key).getMessage());
+			this.setMap(daoHelloWorld.find(id).getMap());
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}

@@ -39,7 +39,7 @@ public abstract class Element implements ISquare {
 		this.nettleWorld = nettleWorld;
 	}
 
-	@Override
+	
 	public Image getImage() {
 		return this.getSprite().getImage();
 	}

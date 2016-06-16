@@ -1,0 +1,12 @@
+      O-O---------O 
+   O--O1I         OO
+   I 1  I          I
+O--O    I   1      I
+I 1 O---O-----O    O
+I1  1D        Q  @ Y
+I 1 O---O-----O    O
+O--O    I   1      I
+   I 1  I          I
+   O--O1I         OO
+      O-O---------O 
+                    

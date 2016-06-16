@@ -80,6 +80,6 @@ abstract class DAOEntity<E extends Entity> {
 	 *          the key
 	 * @return the e
 	 */
-	public abstract E find(String key);
+	//public abstract E find(String key);
 
 }

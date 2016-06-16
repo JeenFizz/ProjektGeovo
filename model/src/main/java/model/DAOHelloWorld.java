@@ -67,13 +67,13 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 		HelloWorld helloWorld = new HelloWorld();
 
 		try {
-			final String sql = "{call helloworldById(?)}";
+			final String sql = "{call MapById(?)}";
 			final CallableStatement call = this.getConnection().prepareCall(sql);
 			call.setInt(1, id);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			if (resultSet.first()) {
-				helloWorld = new HelloWorld(id, resultSet.getString("key"), resultSet.getString("message"));
+				helloWorld = new HelloWorld(id, resultSet.getString("Map"));
 			}
 			return helloWorld;
 		} catch (final SQLException e) {
@@ -82,12 +82,13 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 		return null;
 	}
 
+
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see model.DAOEntity#find(java.lang.String)
 	 */
-	@Override
+	/*@Override
 	public HelloWorld find(final String key) {
 		HelloWorld helloWorld = new HelloWorld();
 
@@ -98,13 +99,13 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			if (resultSet.first()) {
-				helloWorld = new HelloWorld(resultSet.getInt("id"), key, resultSet.getString("message"));
+				helloWorld = new HelloWorld(resultSet.getInt("id"), resultSet.getString("message"));
 			}
 			return helloWorld;
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
+	} 
+	*/
 }

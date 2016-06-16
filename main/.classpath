@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/drac2_000/Documents/CESI EXIA A1 G2/prosit/java/Prosit 36 -Java - POO 3-7/aedt.showboard.jar" sourcepath="C:/Users/Snowirbix/Downloads/aedt.showboard.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/jadiet/Google%20Drive/2015-2016%20A1%20-%20POO_UML_JAVA/Eclipse/aedt.showboard.doc.jar!/doc"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="/controller"/>
+	<classpathentry kind="src" path="/jpu2016_sequence5"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

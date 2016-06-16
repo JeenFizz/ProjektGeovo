@@ -29,7 +29,7 @@ public class Sprite extends StringWriter implements ISprite {
 	 * 
 	 * @see jpu2016.nettle.world.element.ISprite#getImage()
 	 */
-	@Override
+	
 	public Image getImage() {
 		return this.image;
 	}
