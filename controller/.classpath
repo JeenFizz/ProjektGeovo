@@ -22,11 +22,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/drac2_000/Documents/CESI EXIA A1 G2/prosit/java/Prosit 36 -Java - POO 3-7/aedt.showboard.jar" sourcepath="C:/Users/Snowirbix/Downloads/aedt.showboard.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/Users/jadiet/Google%20Drive/2015-2016%20A1%20-%20POO_UML_JAVA/Eclipse/aedt.showboard.doc.jar!/doc"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="src" path="/contract"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
