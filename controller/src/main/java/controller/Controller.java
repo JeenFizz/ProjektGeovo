@@ -66,21 +66,26 @@ public class Controller implements IController {
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
-			case Map1:
-				this.model.loadMap(1);
-				break;
-			case Map2:
-				this.model.loadMap(2);
-				break;
-			case Map3:
-				this.model.loadMap(3);
-				break;
-			case Map4:
-				this.model.loadMap(4);
-				break;
-			case Map5:
-				this.model.loadMap(5);
-				break;
+		case MAP1:
+			this.model.loadMap("MAP1");
+			break;
+        case MAP2:
+			this.model.loadMap("MAP2");
+			break;
+        case MAP3:
+			this.model.loadMap("MAP3");
+			break;
+        case MAP4:
+			this.model.loadMap("MAP4");
+			break;
+        case MAP5:
+            this.model.loadMap("MAP5");
+            break;
+        case MENU:
+            this.model.loadMap("MENU");
+            break;
+
+            break;
 			default:
 				break;
 		}
