@@ -1,6 +1,7 @@
 package contract;
 
 import java.util.Observable;
+import java.awt.*;
 
 /**
  * The Interface IModel.
