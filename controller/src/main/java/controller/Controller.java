@@ -84,8 +84,6 @@ public class Controller implements IController {
         case MENU:
             this.model.loadMap("MENU");
             break;
-
-            break;
 			default:
 				break;
 		}
