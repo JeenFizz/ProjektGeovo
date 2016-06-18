@@ -95,7 +95,7 @@ public class View implements IView, Runnable {
            
             
 			default:
-				return ControllerOrder.MAP1;
+				return null;
 		}
 	}
 
