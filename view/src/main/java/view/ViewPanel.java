@@ -1,9 +1,11 @@
 package view;
 
-import java.awt.Graphics;
-import java.util.Observable;
-import java.util.Observer;
+import contract.IElement;
 
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import javax.swing.JPanel;
 
 /**
@@ -11,12 +13,14 @@ import javax.swing.JPanel;
  *
  * @author Jean-Aymeric Diet
  */
-class ViewPanel extends JPanel implements Observer {
+class ViewPanel extends JPanel {
 
 	/** The view frame. */
-	private ViewFrame					viewFrame;
+	private ViewFrame viewFrame;
 	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -998294702363713521L;
+	private static final long serialVersionUID = -998294702363713521L;
+
+    private IElement[][] tileMap;
 
 	/**
 	 * Instantiates a new view panel.
@@ -26,7 +30,6 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
 		this.setViewFrame(viewFrame);
-		viewFrame.getModel().getObservable().addObserver(this);
 	}
 
 	/**
@@ -53,9 +56,23 @@ class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
-	public void update(final Observable arg0, final Object arg1) {
+	public void update(IElement[][] tileMap) {
+        this.tileMap = tileMap;
+		this.setSize(this.tileMap[0].length, this.tileMap.length);
 		this.repaint();
 	}
+
+    /**
+     * Modified windows size taking border in count and sprite size (32x32)
+     *
+     * @param width
+     * @param height
+     */
+    public void setSize(int width, int height) {
+        super.setSize((width*32) + this.getInsets().left + this.getInsets().right,
+                (height*32) + this.getInsets().top + this.getInsets().bottom);
+        this.viewFrame.setSize(width*32, height*32);
+    }
 
 	/*
 	 * (non-Javadoc)
@@ -64,7 +81,21 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
-		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawString(this.getViewFrame().getModel().getMap(), 10, 20);
-	}
+        graphics.setColor(Color.black);
+        graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
+
+        if(this.tileMap != null)
+        {
+            for (int i = 0; i < this.tileMap.length; i++)
+            {
+                for(int j = 0; j < this.tileMap[0].length; j++)
+                {
+                    BufferedImage image = tileMap[i][j].getImage();
+                    if(image != null)
+                        graphics.drawImage(image, j*32, i*32, null);
+                }
+            }
+        }
+
+    }
 }

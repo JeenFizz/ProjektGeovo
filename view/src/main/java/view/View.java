@@ -4,10 +4,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
-import contract.ControllerOrder;
-import contract.IController;
-import contract.IModel;
-import contract.IView;
+import contract.*;
 
 /**
  * The Class View.
@@ -30,6 +27,18 @@ public class View implements IView, Runnable {
 		SwingUtilities.invokeLater(this);
 	}
 
+	
+	public int getHeight()
+	{
+		return this.viewFrame.getHeight();
+	}
+
+	public int getWidth()
+	{
+		return this.viewFrame.getWidth();
+	}
+	
+	
 	/**
 	 * Key code to controller order.
 	 *
@@ -40,27 +49,53 @@ public class View implements IView, Runnable {
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
 			case KeyEvent.VK_1:
-				return ControllerOrder.Map1;
-			case KeyEvent.VK_NUMPAD1:
-				return ControllerOrder.Map1;
+				return ControllerOrder.MAP1;
+			
 			case KeyEvent.VK_2:
-				return ControllerOrder.Map2;
-			case KeyEvent.VK_NUMPAD2:
-				return ControllerOrder.Map2;
+				return ControllerOrder.MAP2;
+			
 			case KeyEvent.VK_3:
-				return ControllerOrder.Map3;
-			case KeyEvent.VK_NUMPAD3:
-				return ControllerOrder.Map3;
+				return ControllerOrder.MAP3;
+			
 			case KeyEvent.VK_4:
-				return ControllerOrder.Map4;
-			case KeyEvent.VK_NUMPAD4:
-				return ControllerOrder.Map4;
+				return ControllerOrder.MAP4;
+			
 			case KeyEvent.VK_5:
-				return ControllerOrder.Map5;
+				return ControllerOrder.MAP5;
+			
+			case KeyEvent.VK_M:
+				return ControllerOrder.MENU;
+			
+		//diagonals
+			case KeyEvent.VK_NUMPAD7:
+            	return ControllerOrder.MOVELEFTUP;
+			
+             case KeyEvent.VK_NUMPAD9:
+            	return ControllerOrder.MOVERIGHTUP; 
+           
+			case KeyEvent.VK_NUMPAD3:
+            	return ControllerOrder.MOVERIGHTDOWN;
+            
+            case KeyEvent.VK_NUMPAD1:
+            	return ControllerOrder.MOVELEFTDOWN; 
+            
+            
+         //simple movements   
+			case KeyEvent.VK_NUMPAD4:
+				return ControllerOrder.MOVELEFT;			
+			case KeyEvent.VK_NUMPAD6:
+				return ControllerOrder.MOVERIGHT;
+			case KeyEvent.VK_NUMPAD2:
+				return ControllerOrder.MOVEDOWN;
 			case KeyEvent.VK_NUMPAD5:
-				return ControllerOrder.Map5;
+				return ControllerOrder.MOVEDOWN;
+			case KeyEvent.VK_NUMPAD8:
+				return ControllerOrder.MOVEUP;
+				
+           
+            
 			default:
-				return ControllerOrder.Map1;
+				return ControllerOrder.MAP1;
 		}
 	}
 
@@ -82,6 +117,10 @@ public class View implements IView, Runnable {
 		this.viewFrame.setVisible(true);
 	}
 
+	public void repaint(){
+		this.viewFrame.update();
+	}
+	
 	/**
 	 * Sets the controller.
 	 *

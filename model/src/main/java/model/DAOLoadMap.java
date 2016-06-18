@@ -65,25 +65,7 @@ class DAOLoadMap extends DAOEntity<LoadMap> {
      *
      * @see model.DAOEntity#find(int)
      */
-    @Override
-    public Entity find(final int score_id) {
-        LoadMap loadmap = new LoadMap();
-
-        try {
-            final String sql = "{call loadmapById(?)}";
-            final CallableStatement call = this.getConnection().prepareCall(sql);
-            call.setInt(1, score_id);
-            call.execute();
-            final ResultSet resultSet = call.getResultSet();
-            if (resultSet.first()) {
-                loadmap = new LoadMap(score_id, resultSet.getString("key"), resultSet.getString("map"));
-            }
-            return loadmap;
-        } catch (final SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+    
 
     /*
      * (non-Javadoc)

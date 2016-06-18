@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.GraphicsConfiguration;
+
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -10,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import contract.IController;
 import contract.IModel;
+import contract.*;
 
 /**
  * The Class ViewFrame.
@@ -19,10 +21,13 @@ import contract.IModel;
 class ViewFrame extends JFrame implements KeyListener {
 
 	/** The model. */
-	private IModel						model;
+	private IModel	model;
 
 	/** The controller. */
-	private IController				controller;
+	private IController	controller;
+	/** The Constant serialVersionUID. */
+	
+	private ViewPanel viewPanel;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -697358409737458175L;
 
@@ -125,7 +130,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @param model
 	 *          the model
 	 */
-	private void buildViewFrame(final IModel model) {
+	/* private void buildViewFrame(final IModel model) {
 		this.setModel(model);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -133,7 +138,35 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setContentPane(new ViewPanel(this));
 		this.setSize(1020 + this.getInsets().left + this.getInsets().right, 720 + this.getInsets().top + this.getInsets().bottom);
 		this.setLocationRelativeTo(null);
+	} TEST */
+	
+	private void buildViewFrame(final IModel model) {
+		  this.viewPanel = new ViewPanel(this);
+		  this.setModel(model);
+		  this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		  this.setResizable(false);
+		  this.addKeyListener(this);
+		  this.setContentPane(this.viewPanel);
+		  this.setSize(1920, 1080);
+		  this.setLocationRelativeTo(null);
+		 }
+	
+	public void update() {
+		this.viewPanel.update(
+                this.controller.getTileMap()
+        );
 	}
+
+    /**
+     * Modified windows size taking border in count
+     *
+     * @param width
+     * @param height
+     */
+    public void setSize(int width, int height) {
+        super.setSize(width + this.getInsets().left + this.getInsets().right,
+                height + this.getInsets().top + this.getInsets().bottom);
+    }
 
 	/**
 	 * Prints the message.
