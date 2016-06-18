@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author Alex GUILBAUD 
  * inspired of jpu2016sequence5
  */
-public abstract class Mobile  {
+public abstract class Mobile extends Element implements IMobile{
     public Point getPos() {
         // methods return actual position
     }
