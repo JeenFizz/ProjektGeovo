@@ -8,10 +8,14 @@ package contract;
 public interface IView {
 
 	/**
-	 * Prints the message.
-	 *
-	 * @param message
-	 *          the message
+	 * 
+	 * @param controller
 	 */
-	void printMessage(final String Message);
+	void setController(IController controller);
+	
+	void repaint();
+
+	int getHeight();
+
+	int getWidth();
 }

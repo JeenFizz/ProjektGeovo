@@ -1,6 +1,7 @@
 package model.mobile;
 
 import contract.IElement;
+
 import contract.IHero;
 import contract.IView;
 import contract.MobileOrder;

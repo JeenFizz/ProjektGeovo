@@ -2,6 +2,7 @@ package model;
 
 import java.awt.*;
 
+import contract.IMobile;
 import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.Observable;
@@ -26,7 +27,7 @@ public class Model extends Observable implements IModel {
 	}
 
 	/**
-	 * Associate all sprite with a letter representing hin in tileMap
+	 * Associate all sprite with a letter representing it in tileMap
 	 */
 	public IElement element(char c, Point pos) {
 		switch (c){
@@ -46,8 +47,10 @@ public class Model extends Observable implements IModel {
 				return new Purse();
 			case 'L'://@
 				return new Hero(pos);
-            case 'F':
-                return new FireBall(pos);
+           /* case 'F':
+                return new FireBall(pos); 
+             NOT IMPLEMENTED YET
+             */
 			case '1'://A
 				return new Monster1(pos);
 			case '2'://B

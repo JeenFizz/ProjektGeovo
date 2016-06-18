@@ -8,9 +8,9 @@ package contract;
 public interface IController {
 
 	/**
-	 * Control.
+	 * start
 	 */
-	public void control();
+	public void start();
 
 	/**
 	 * Order perform.
