@@ -18,4 +18,8 @@ public interface IView {
 	int getHeight();
 
 	int getWidth();
+	
+	void showdiemessage(final String message);
+	
+	void Winmessage(final String message);
 }

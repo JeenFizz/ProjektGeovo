@@ -2,8 +2,8 @@ package view;
 
 import java.awt.event.KeyEvent;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
 import contract.*;
 
 /**
@@ -105,8 +105,12 @@ public class View implements IView, Runnable {
 	 *
 	 * @see contract.IView#printMessage(java.lang.String)
 	 */
-	public void printMessage(final String message) {
-		this.viewFrame.printMessage(message);
+	public void showdiemessage(final String message) {
+		JOptionPane.showMessageDialog(null, message);
+	}
+	
+	public void Winmessage(final String message) {
+		JOptionPane.showMessageDialog(null, message);
 	}
 
 	/*

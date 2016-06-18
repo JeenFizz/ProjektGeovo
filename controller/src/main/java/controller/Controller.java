@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.*;
 
+
 import java.util.*;
 import contract.*;
 
@@ -24,6 +25,12 @@ public class Controller implements IController , Observer {
 	private IHero hero;
 	
 	private ISpell Spell;
+	
+	private Point posDoor = null;
+	
+	private int level = 1;
+
+    private int score = 0;
 	
 	private HashMap<String, IMonster> monsters = new HashMap<String, IMonster>();
 	
@@ -76,8 +83,10 @@ public class Controller implements IController , Observer {
            
 
             if(this.dead) {
-                System.out.println("DEAD");
-                this.hero = null;
+                this.model.loadMap("MAP1");
+                this.view.showdiemessage(String.format("YOU DIED! You made a score of : %d\nPress OK to restart the game", this.score));
+                this.level = 1;
+                this.score = 0;
             }
 
             for (Object o : this.monsters.entrySet()) {
@@ -133,6 +142,7 @@ public class Controller implements IController , Observer {
         IElement[][] map = new IElement[x][y];
 
         this.monsters.clear();
+        this.posDoor = null;
 
         for(IElement[] row: map)
             Arrays.fill(row, this.model.element(' ', null));
@@ -153,6 +163,8 @@ public class Controller implements IController , Observer {
                 if(c == '1' || c == '2' || c == '3' || c == '4') { // 1 2 3 4 ABCD
                     IMonster monster = (IMonster) element;
                     this.monsters.put(monster.getClass().getSimpleName(), monster);
+                }if(c == 'C') {//C Y
+                    this.posDoor = pos.getLocation();
                 }
 
                 if (element != null) {
@@ -243,9 +255,29 @@ public class Controller implements IController , Observer {
 	        this.tileMap[pos.x][pos.y] = model.element(' ', pos.getLocation());
 
 	        pos = this.hero.getPos();
-	        if(this.tileMap[pos.x][pos.y].getClass()
-	                .getSimpleName().contains("Monster")) {
+	        
+	        String elementName = this.tileMap[pos.x][pos.y].getClass().getSimpleName();
+	        
+	        if(elementName.contains("Monster")) {
 	            this.dead = true;
+	        } else if (elementName.contains("Crystal") && this.posDoor != null) {
+	            this.tileMap[this.posDoor.x][this.posDoor.y] = model.element('O', this.posDoor);
+	        }else if(elementName.contains("ClosedDoor")) {
+	            this.dead = true;
+	            System.out.println("DEAD");
+	        } else if (elementName.contains("OpenDoor")) {
+	            this.level++;
+	            if(this.level > 5) {
+                    
+                     this.view.Winmessage(String.format("CONGRATULATION ᕙ( ͡° ͜ʖ ͡°)ᕗ ! You Win with : %d points \n But you can do better retry with OK button",  this.score));
+                    this.score = 0;
+                    this.level = 1;
+                }
+	            this.view.Winmessage(String.format("Next level"));
+	            this.model.loadMap(String.format("MAP%d", this.level));
+	            return;
+	        } else if (elementName.contains("Purse")) {
+	            this.score += 650;
 	        }
 	        this.tileMap[pos.x][pos.y] = this.hero;
 	        this.view.repaint();
@@ -413,6 +445,7 @@ public class Controller implements IController , Observer {
 		        if(nextElement.contains("Monster")) {
 		            this.Spell.setLocation(nextPos);
 		            this.tileMap[nextPos.x][nextPos.y] = this.Spell;
+		            this.score += 500;
 		            this.endspell();
 		            System.out.println("Monster : " + this.monsters.remove(nextElement));
 		        } else if(nextElement.contains("Door") ||

@@ -43,7 +43,7 @@ public class Model extends Observable implements IModel {
 				return new ClosedDoor();
 			case 'O'://X
 				return new OpenDoor();
-			case 'p'://1
+			case 'P'://1
 				return new Purse();
 			case 'L'://@
 				return new Hero(pos);
