@@ -10,9 +10,16 @@ import java.awt.*;
 
 
 public class Hero extends Mobile implements IHero {
+	
+	
+	
     public Hero(Point pos) {
-        super("lorann_b.png", true, pos);
-    }
+                super("lorann_b.png", true, pos);
+        }
+    
+    
+    
+    
 
     public void move(MobileOrder order, IElement[][] tileMap, IView view)
     {

@@ -23,6 +23,8 @@ public class Controller implements IController , Observer {
 	
 	private IHero hero;
 	
+	private ISpell Spell;
+	
 	private HashMap<String, IMonster> monsters = new HashMap<String, IMonster>();
 	
 	 private boolean dead = false;
@@ -90,6 +92,10 @@ public class Controller implements IController , Observer {
                 Thread.sleep(300);
             } catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
+            }
+            
+            if(this.Spell != null) {
+                this.movespell();
             }
         }
 	}
@@ -215,7 +221,12 @@ public class Controller implements IController , Observer {
         case MOVELEFTDOWN:
             this.moveHero(MobileOrder.LeftDown);
             break;
-        
+      //USER'S CALL OF LORANN'S SPELL 
+            
+        case SPELL:
+            this.spell();
+            break;
+            
 		default:
             this.model.loadMap("TEST");
 			break;
@@ -362,6 +373,65 @@ public class Controller implements IController , Observer {
 		 public void update(Observable o, Object arg) {
 		        this.tileMap = parser(model.getMap());
 		        this.view.repaint();
+		    }
+		 
+		 
+		 private void spell() {
+		        if(this.Spell != null)
+		            return;
+		        this.endspell();
+		        MobileOrder direction = this.hero.getDirection();
+		        Point currentPos = this.hero.getPos().getLocation();
+		        Point nextPos = this.computeNextPos(direction, currentPos);
+		        if(!currentPos.equals(nextPos)) {
+		            this.Spell = (ISpell) this.model.element('F', nextPos);
+		            this.Spell.setDirection(direction);
+		            this.checkspell(nextPos);
+		            this.view.repaint();
+		        }
+		    }
+		        
+		    
+
+		    private void movespell() {
+		        Point currentPos = this.Spell.getPos().getLocation();
+		        this.Spell.animate();
+		        Point nextPos = this.computeNextPos(this.Spell.getDirection(), currentPos);
+
+		        this.checkspell(nextPos);
+
+		        this.tileMap[currentPos.x][currentPos.y] = model.element(' ', currentPos.getLocation());
+
+		        if(this.Spell != null && this.Spell.getStep() > 5) {
+		            this.endspell();
+		        }
+		    }
+		    
+		    
+		    private void checkspell(Point nextPos) {
+		        String nextElement = this.tileMap[nextPos.x][nextPos.y].getClass().getSimpleName();
+		        if(nextElement.contains("Monster")) {
+		            this.Spell.setLocation(nextPos);
+		            this.tileMap[nextPos.x][nextPos.y] = this.Spell;
+		            this.endspell();
+		            System.out.println("Monster : " + this.monsters.remove(nextElement));
+		        } else if(nextElement.contains("Door") ||
+		                nextElement.contains("Purse") ||
+		                nextElement.contains("Crystal")) {
+		            this.Spell = null;
+		        }
+		        else {
+		            this.Spell.setLocation(nextPos);
+		            this.tileMap[nextPos.x][nextPos.y] = this.Spell;
+		        }
+		    }
+
+		    private void endspell() {
+		        if(this.Spell != null) {
+		            Point pos = this.Spell.getPos().getLocation();
+		            this.tileMap[pos.x][pos.y] = this.model.element(' ', pos);
+		            this.Spell = null;
+		        }
 		    }
 
 			

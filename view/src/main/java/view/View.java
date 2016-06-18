@@ -92,7 +92,8 @@ public class View implements IView, Runnable {
 			case KeyEvent.VK_NUMPAD8:
 				return ControllerOrder.MOVEUP;
 				
-           
+			 case KeyEvent.VK_SPACE:
+	                return ControllerOrder.SPELL;
             
 			default:
 				return null;

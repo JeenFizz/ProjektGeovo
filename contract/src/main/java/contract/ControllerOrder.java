@@ -22,6 +22,6 @@ public enum ControllerOrder {
 	MAP5,/** The fifth map.*/
 	MENU,
 	WORKSHOP,
-    FIRE
+    SPELL
 
 }
