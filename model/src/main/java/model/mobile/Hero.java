@@ -7,9 +7,7 @@ import contract.MobileOrder;
 
 import java.awt.*;
 
-/**
- * Created by Yog on 14/06/2016.
- */
+
 public class Hero extends Mobile implements IHero {
     public Hero(Point pos) {
         super("lorann_b.png", true, pos);
