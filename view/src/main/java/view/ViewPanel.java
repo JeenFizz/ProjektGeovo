@@ -2,9 +2,10 @@ package view;
 
 import contract.IElement;
 
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.sql.Array;
+import java.sql.SQLException;
 import java.util.Arrays;
 import javax.swing.JPanel;
 
@@ -96,6 +97,5 @@ class ViewPanel extends JPanel {
                 }
             }
         }
-
     }
 }

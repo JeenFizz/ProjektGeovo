@@ -28,7 +28,7 @@ public class Controller implements IController , Observer {
 	
 	private Point posDoor = null;
 	
-	private int level = 1;
+	private int level = 0;
 
     private int score = 0;
 	
@@ -39,6 +39,9 @@ public class Controller implements IController , Observer {
 	 public IElement[][] getTileMap() {
 	        return tileMap;
 	    }
+	 
+	 
+	
 
 	/**
 	 * Instantiates a new controller.
@@ -264,16 +267,15 @@ public class Controller implements IController , Observer {
 	            this.tileMap[this.posDoor.x][this.posDoor.y] = model.element('O', this.posDoor);
 	        }else if(elementName.contains("ClosedDoor")) {
 	            this.dead = true;
-	            System.out.println("DEAD");
 	        } else if (elementName.contains("OpenDoor")) {
 	            this.level++;
 	            if(this.level > 5) {
                     
-                     this.view.Winmessage(String.format("CONGRATULATION ᕙ( ͡° ͜ʖ ͡°)ᕗ ! You Win with : %d points \n But you can do better retry with OK button",  this.score));
+                     this.view.Winmessage(String.format("CONGRATULATION ( ͡° ͜ʖ ͡°) ! You Win with : %d points \n But you can do better retry with OK button",  this.score));
                     this.score = 0;
                     this.level = 1;
                 }
-	            this.view.Winmessage(String.format("Next level"));
+	            this.view.Winmessage(String.format("Now you Have %d points but go to the Next level",this.score));
 	            this.model.loadMap(String.format("MAP%d", this.level));
 	            return;
 	        } else if (elementName.contains("Purse")) {

@@ -110,7 +110,7 @@ public class Hero extends Mobile implements IHero {
             case LeftDown:
                 if(this.direction == MobileOrder.LeftDown && 
                 		this.pos.y > 0 && this.pos.x < view.getHeight() / 32 - 1 &&
-                        tileMap[this.pos.x + 1][this.pos.y + 1 ].getPermeability())
+                        tileMap[this.pos.x + 1][this.pos.y - 1 ].getPermeability())
                 {
                     this.pos.setLocation(
                             this.pos.getX() + 1,

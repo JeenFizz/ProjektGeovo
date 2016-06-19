@@ -23,4 +23,5 @@ public interface IController {
 	IElement[][] getTileMap();
 
 	IElement[][] parser(String tilemap);
+	
 }

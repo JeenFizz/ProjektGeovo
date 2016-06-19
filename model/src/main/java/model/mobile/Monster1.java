@@ -19,8 +19,43 @@ public class Monster1 extends Mobile implements IMonster {
         super("monster_1.png", true, pos);
     }
 
-  
+    
     public MobileOrder getDirection(Point heroPos, IElement[][] tileMap) {
-        return MobileOrder.random();
+    	Point Monsterpos = this.getPos().getLocation();
+    	
+
+        if(Monsterpos.x == heroPos.x) {
+            if(Monsterpos.y > heroPos.y) {
+                direction = MobileOrder.Left;
+            } else if (Monsterpos.y < heroPos.y) {
+                direction = MobileOrder.Right;
+            }
+        } else if(Monsterpos.y == heroPos.y) {
+            if(Monsterpos.x > heroPos.x) {
+                direction = MobileOrder.Up;
+            } else if (Monsterpos.x < heroPos.x) {
+                direction = MobileOrder.Down;
+            }
+        } else if (Monsterpos.x < heroPos.x) {
+            if(Monsterpos.y > heroPos.y) {
+                direction = MobileOrder.LeftDown;
+            } else if (Monsterpos.y < heroPos.y) {
+                direction = MobileOrder.RightDown;
+            }
+        } else if (Monsterpos.y < heroPos.y) {
+            if(Monsterpos.x > heroPos.x) {
+                direction = MobileOrder.RightUp;
+            } else if (Monsterpos.x < heroPos.x) {
+                direction = MobileOrder.LeftUp; 
+            }
+        } else if (Monsterpos.y != heroPos.y){
+        	direction = MobileOrder.random();
+        }else if (Monsterpos.x != heroPos.x){
+        	direction = MobileOrder.random();
+        }
+
+       
+
+        return direction;
     }
 }
