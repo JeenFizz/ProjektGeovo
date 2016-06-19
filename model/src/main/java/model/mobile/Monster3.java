@@ -17,6 +17,35 @@ public class Monster3 extends Mobile implements IMonster {
 
     
     public MobileOrder getDirection(Point heroPos, IElement[][] tileMap) {
-        return MobileOrder.random();
+    	
+    	Point Monsterpos = this.getPos().getLocation();
+    	
+    	if(Monsterpos.x == heroPos.x) {
+            if(Monsterpos.y > heroPos.y) {
+                direction = MobileOrder.Left;
+            } else if (Monsterpos.y < heroPos.y) {
+                direction = MobileOrder.Right;
+            }
+        } else if(Monsterpos.y == heroPos.y) {
+            if(Monsterpos.x > heroPos.x) {
+                direction = MobileOrder.Up;
+            } else if (Monsterpos.x < heroPos.x) {
+                direction = MobileOrder.Down;
+            }
+        } else if (Monsterpos.x != heroPos.x) {
+            if(Monsterpos.y > heroPos.y) {
+                direction = MobileOrder.Left;
+            } else if (Monsterpos.y < heroPos.y) {
+                direction = MobileOrder.Right;
+            }
+        } else if (Monsterpos.y != heroPos.y) {
+            if(Monsterpos.x > heroPos.x) {
+                direction = MobileOrder.Right;
+            } else if (Monsterpos.x < heroPos.x) {
+                direction = MobileOrder.Left; 
+            }
+		
+    }
+    	return direction;
     }
 }

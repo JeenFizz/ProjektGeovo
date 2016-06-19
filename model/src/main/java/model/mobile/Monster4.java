@@ -20,6 +20,16 @@ public class Monster4 extends Mobile implements IMonster {
 
    
     public MobileOrder getDirection(Point heroPos, IElement[][] tileMap) {
-        return MobileOrder.Up;
-    }
+    		Point Monsterpos = this.getPos().getLocation();
+    	
+
+        if( Monsterpos.y > heroPos.y ) {
+        		direction = MobileOrder.Left;
+        	}else if(Monsterpos.y < heroPos.y){
+        		direction = MobileOrder.Right;
+        	}else{
+        		direction = MobileOrder.random();
+        	}
+		return direction;
+}
 }

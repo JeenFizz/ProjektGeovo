@@ -1,6 +1,7 @@
 package model.mobile;
 
 import contract.IElement;
+
 import contract.IMonster;
 import contract.MobileOrder;
 import contract.*;
@@ -20,6 +21,26 @@ public class Monster2 extends Mobile implements IMonster {
 
     
     public MobileOrder getDirection(Point heroPos, IElement[][] tileMap) {
-        return MobileOrder.LeftUp;
-    }
+    		Point Monsterpos = this.getPos().getLocation();
+    	
+
+        if(Monsterpos.x - heroPos.x > 3 || Monsterpos.y - heroPos.y > 3 || Monsterpos.x - heroPos.x < -3 || Monsterpos.y - heroPos.y < -3) {
+        		direction = MobileOrder.LeftUp;
+        	}else if(Monsterpos.x == heroPos.x) {
+            if(Monsterpos.y > heroPos.y) {
+                direction = MobileOrder.Left;
+            } else if (Monsterpos.y < heroPos.y) {
+                direction = MobileOrder.Right;
+            }
+        } else if(Monsterpos.y == heroPos.y) {
+            if(Monsterpos.x > heroPos.x) {
+                direction = MobileOrder.Up;
+            } else if (Monsterpos.x < heroPos.x) {
+                direction = MobileOrder.Down;
+            }
+        }else{
+        		direction = MobileOrder.RightDown;
+        	}
+		return direction;
+}
 }
