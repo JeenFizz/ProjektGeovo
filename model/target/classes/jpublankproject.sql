@@ -1,8 +1,8 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.5.4.1
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost
+-- test Client :  localhost
 -- Généré le :  Lun 20 Juin 2016 à 07:50
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
