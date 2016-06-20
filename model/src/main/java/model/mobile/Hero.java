@@ -33,7 +33,7 @@ public class Hero extends Mobile implements IHero {
                             this.pos.getX(),
                             this.pos.getY() - 1);
                 } else {
-                    this.loadSprite("../model/src/main/java/model/mobile/lorann_l.png");
+                    this.loadSprite("../model/src/main/java/model/sprite/lorann_l.png");
                 }
                 break;
             case Right:
@@ -45,7 +45,7 @@ public class Hero extends Mobile implements IHero {
                             this.pos.getX(),
                             this.pos.getY() + 1);
                 } else {
-                    this.loadSprite("../model/src/main/java/model/mobile/lorann_r.png");
+                    this.loadSprite("../model/src/main/java/model/sprite/lorann_r.png");
                 }
                 break;
             case Up:
@@ -56,7 +56,7 @@ public class Hero extends Mobile implements IHero {
                             this.pos.getX() - 1,
                             this.pos.getY());
                 } else {
-                    this.loadSprite("../model/src/main/java/model/mobile/lorann_u.png");
+                    this.loadSprite("../model/src/main/java/model/sprite/lorann_u.png");
                 }
                 break;
             case Down:
@@ -67,7 +67,7 @@ public class Hero extends Mobile implements IHero {
                             this.pos.getX() + 1,
                             this.pos.getY());
                 } else {
-                    this.loadSprite("../model/src/main/java/model/mobile/lorann_b.png");
+                    this.loadSprite("../model/src/main/java/model/sprite/lorann_b.png");
                 }
                 break;
             case LeftUp:
@@ -79,7 +79,7 @@ public class Hero extends Mobile implements IHero {
                             this.pos.getX() - 1,
                             this.pos.getY() - 1);
                 } else {
-                    this.loadSprite("../model/src/main/java/model/mobile/lorann_ul.png");
+                    this.loadSprite("../model/src/main/java/model/sprite/lorann_ul.png");
                 }
                 break;
             case RightUp:
@@ -91,7 +91,7 @@ public class Hero extends Mobile implements IHero {
                             this.pos.getX() - 1,
                             this.pos.getY() + 1);
                 } else {
-                    this.loadSprite("../model/src/main/java/model/mobile/lorann_ur.png");
+                    this.loadSprite("../model/src/main/java/model/sprite/lorann_ur.png");
                 }
                 break;
                 
@@ -104,7 +104,7 @@ public class Hero extends Mobile implements IHero {
                             this.pos.getX() + 1,
                             this.pos.getY() + 1);
                 } else {
-                    this.loadSprite("../model/src/main/java/model/mobile/lorann_br.png");
+                    this.loadSprite("../model/src/main/java/model/sprite/lorann_br.png");
                 }
                 break;
             case LeftDown:
@@ -116,7 +116,7 @@ public class Hero extends Mobile implements IHero {
                             this.pos.getX() + 1,
                             this.pos.getY() - 1);
                 } else {
-                    this.loadSprite("../model/src/main/java/model/mobile/lorann_bl.png");
+                    this.loadSprite("../model/src/main/java/model/sprite/lorann_bl.png");
                 }
                 break;
         }
