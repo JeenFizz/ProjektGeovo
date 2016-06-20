@@ -19,7 +19,10 @@ public class Monster2 extends Mobile implements IMonster {
         super("monster_2.png", true, pos);
     }
 
-    
+    /**
+     * @param heroPos, tileMap
+     * gets the position of Lorann and move the monster to him.
+     */
     public MobileOrder getDirection(Point heroPos, IElement[][] tileMap) {
     		Point Monsterpos = this.getPos().getLocation();
     	

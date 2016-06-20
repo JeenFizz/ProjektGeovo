@@ -21,7 +21,7 @@ public class Monster1 extends Mobile implements IMonster {
 
     /**
      * @param heroPos, tileMap
-     * gets the position of Lorann and directs the monster to him.
+     * gets the position of Lorann and move the monster to him.
      */
     public MobileOrder getDirection(Point heroPos, IElement[][] tileMap) {
     	Point Monsterpos = this.getPos().getLocation();

@@ -27,19 +27,28 @@ public abstract class Mobile extends Element implements IMobile{
 
     protected MobileOrder direction = MobileOrder.Down; //Begin with Lorann Down sprite
 
+    /**
+     * 
+     * @param imagePath
+     * @param permeability
+     * @param pos
+     */
     public Mobile(String imagePath, boolean permeability, Point pos) {
         super(imagePath, permeability);
         this.pos.setLocation(pos);
     }
-
+//set the location
     public void setLocation(Point loc) {
         this.pos.setLocation(loc);
     }
-
+//return the direction of the mobile order
     public MobileOrder getDirection() {
         return direction;
     }
 
+    /**
+     * move in eight direction 
+     */
     public void move(MobileOrder order)
     {
         switch (order) {

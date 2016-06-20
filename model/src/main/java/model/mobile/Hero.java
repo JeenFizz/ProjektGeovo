@@ -8,7 +8,11 @@ import contract.MobileOrder;
 
 import java.awt.*;
 
-
+/**
+ * 
+ * @author Alex GUILBAUD
+ *
+ */
 public class Hero extends Mobile implements IHero {
 	
 	
@@ -20,9 +24,14 @@ public class Hero extends Mobile implements IHero {
     
     
     
-
+/*
+ * (non-Javadoc)
+ * @see contract.IHero#move(contract.MobileOrder, contract.IElement[][], contract.IView)
+ * move the hero in height position test the penetrability and change his sprite
+ */
     public void move(MobileOrder order, IElement[][] tileMap, IView view)
     {
+    	
         switch (order) {
             case Left:
                 if(this.direction == MobileOrder.Left &&
