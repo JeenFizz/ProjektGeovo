@@ -9,9 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Created by Yog on 13/06/2016.
- */
+
 public abstract class Element implements IElement {
     protected BufferedImage image = null;
     protected boolean permeability;
@@ -23,6 +21,8 @@ public abstract class Element implements IElement {
         }
         this.permeability = permeability;
     }
+    
+    /* allow us to load sprite from a package with a pathname */
 
     protected void loadSprite(String path) {
         try {

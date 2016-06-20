@@ -11,7 +11,7 @@ import java.awt.*;
 
 
 /**
- * @author Alex GUILBAUD on 13/06/2016 , modify by maxence 
+ * @author Alex GUILBAUD on 13/06/2016 , modified by maxence on 20/06/2016
  */
 public class Monster1 extends Mobile implements IMonster {
     public Monster1(Point pos)
@@ -19,7 +19,10 @@ public class Monster1 extends Mobile implements IMonster {
         super("monster_1.png", true, pos);
     }
 
-    
+    /**
+     * @param heroPos, tileMap
+     * gets the position of Lorann and directs the monster to him.
+     */
     public MobileOrder getDirection(Point heroPos, IElement[][] tileMap) {
     	Point Monsterpos = this.getPos().getLocation();
     	
