@@ -16,6 +16,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+CREATE DATABASE jpublankproject;
+
+USE jpublankprojec';
+
 --
 -- Base de données :  `jpublankproject`
 --
@@ -24,25 +28,6 @@ DELIMITER $$
 --
 -- Procédures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualScore` (IN `points` INT(15), IN `p_nickname` VARCHAR(15), IN `w_nickname` VARCHAR(15))  NO SQL
-BEGIN
-    CALL UpdateScoreNickname(points, p_nickname);
-    CALL ShowActualUserScore(w_nickname);
-  END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddShowScore` (IN `points` INT(15), IN `p_nickname` VARCHAR(15))  NO SQL
-BEGIN
-    CALL UpdateScoreNickname(points, p_nickname);
-    CALL Show5BestUsers;
-  END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `helloworldById` (IN `p_id` INT)  READS SQL DATA
-    SQL SECURITY INVOKER
-SELECT * FROM helloworld WHERE id = p_id$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `HelloworldByKey` (IN `p_key` VARCHAR(2))  READS SQL DATA
-    SQL SECURITY INVOKER
-SELECT * FROM jpublankproject.helloworld where `key`=p_key$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `loadmapById` (IN `p_id` INT)  NO SQL
 SELECT * FROM map WHERE map_id = p_id$$
@@ -50,48 +35,10 @@ SELECT * FROM map WHERE map_id = p_id$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `loadmapByKey` (IN `p_key` VARCHAR(50))  NO SQL
 SELECT * FROM jpublankproject.map where `map_name`=p_key$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Show5BestUsers` ()  NO SQL
-SELECT SUM(score), nickname FROM score GROUP BY nickname ORDER BY score DESC LIMIT 5$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ShowActualUserScore` (IN `w_nickname` VARCHAR(15))  NO SQL
-SELECT SUM(score), nickname AS Score FROM score WHERE nickname = w_nickname$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ShowNicknamesScores` ()  NO SQL
-SELECT nickname, score
-  FROM score
-  ORDER BY score DESC LIMIT 5$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ShowScores` ()  NO SQL
-SELECT nickname, score
-  FROM score
-  GROUP BY score ORDER BY score DESC LIMIT 5$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateScoreNickname` (IN `points` INT(15), IN `p_nickname` VARCHAR(15))  NO SQL
 INSERT INTO score (score, nickname) VALUES(points, p_nickname)$$
 
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `helloworld`
---
-
-CREATE TABLE `helloworld` (
-  `id` int(11) NOT NULL,
-  `key` varchar(2) CHARACTER SET latin1 NOT NULL,
-  `message` varchar(100) CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `helloworld`
---
-
-INSERT INTO `helloworld` (`id`, `key`, `message`) VALUES
-(1, 'GB', 'Hello world'),
-(2, 'FR', 'Bonjour le monde'),
-(3, 'DE', 'Hallo Welt'),
-(4, 'ID', 'Salamat pagi dunia');
 
 -- --------------------------------------------------------
 
@@ -123,13 +70,6 @@ INSERT INTO `map` (`id`, `map_name`, `map`) VALUES
 --
 
 --
--- Index pour la table `helloworld`
---
-ALTER TABLE `helloworld`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `key_UNIQUE` (`key`);
-
---
 -- Index pour la table `map`
 --
 ALTER TABLE `map`
@@ -138,12 +78,6 @@ ALTER TABLE `map`
 --
 -- AUTO_INCREMENT pour les tables exportées
 --
-
---
--- AUTO_INCREMENT pour la table `helloworld`
---
-ALTER TABLE `helloworld`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `map`
 --
