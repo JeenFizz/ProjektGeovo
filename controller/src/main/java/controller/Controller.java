@@ -59,21 +59,10 @@ public class Controller implements IController , Observer {
         model.getObservable().addObserver(this);
 	}
 
-	private void printTileMap(IElement[][] tileMap) {
-        System.out.println("[");
-        for(int i =0; i < tileMap.length; i++) {
-            System.out.print("    [");
-            for(int j = 0; j < tileMap[0].length; j++) {
-                System.out.print(tileMap[i][j].getClass().getSimpleName()
-                        + ", ");
-            }
-            System.out.println("]");
-        }
-        System.out.println("]");
-    }
 	
 	
-	/*
+	
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see contract.IController#start()
