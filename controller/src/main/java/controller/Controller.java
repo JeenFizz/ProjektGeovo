@@ -275,7 +275,7 @@ public class Controller implements IController , Observer {
 	            this.level++;
 	            if(this.level > 5) {
                     
-                     this.view.Winmessage(String.format("CONGRATULATION ( ͡° ͜ʖ ͡°) ! You Win with : %d points \n But you can do better retry with OK button",  this.score));
+                     this.view.Winmessage(String.format("CONGRATULATION ( ͡° ͜ʖ ͡°) ! You Won with : %d points \n But you can do better retry with OK button",  this.score));
                     this.score = 0;
                     this.level = 1;
                 }

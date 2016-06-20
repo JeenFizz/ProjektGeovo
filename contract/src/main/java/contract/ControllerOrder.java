@@ -21,7 +21,6 @@ public enum ControllerOrder {
 	MAP4,/** The fourth map. */
 	MAP5,/** The fifth map.*/
 	MENU,
-	WORKSHOP,
     SPELL
 
 }
