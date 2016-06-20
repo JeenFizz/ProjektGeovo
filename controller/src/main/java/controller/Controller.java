@@ -436,7 +436,7 @@ public class Controller implements IController , Observer {
 
 		        this.tileMap[currentPos.x][currentPos.y] = model.element(' ', currentPos.getLocation());
 
-		        if(this.Spell != null && this.Spell.getStep() > 5) {
+		        if(this.Spell != null && this.Spell.getStep() > 8) { // range of eight case
 		            this.endspell();
 		        }
 		    }

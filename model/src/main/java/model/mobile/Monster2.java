@@ -25,7 +25,7 @@ public class Monster2 extends Mobile implements IMonster {
     	
 
         if(Monsterpos.x - heroPos.x > 3 || Monsterpos.y - heroPos.y > 3 || Monsterpos.x - heroPos.x < -3 || Monsterpos.y - heroPos.y < -3) {
-        		direction = MobileOrder.LeftUp;
+        		direction = MobileOrder.random();
         	}else if(Monsterpos.x == heroPos.x) {
             if(Monsterpos.y > heroPos.y) {
                 direction = MobileOrder.Left;
