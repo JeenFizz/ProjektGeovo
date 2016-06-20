@@ -436,7 +436,7 @@ public class Controller implements IController , Observer {
 
 		        this.tileMap[currentPos.x][currentPos.y] = model.element(' ', currentPos.getLocation());
 
-		        if(this.Spell != null && this.Spell.getStep() > 8) { // range of eight case
+		        if(this.Spell != null && this.Spell.getStep() > 5) { // range of eight case
 		            this.endspell();
 		        }
 		    }
@@ -454,6 +454,12 @@ public class Controller implements IController , Observer {
 		                nextElement.contains("Purse") ||
 		                nextElement.contains("Crystal")) {
 		            this.Spell = null;
+		        }else if(nextElement.contains("Bone") || 
+		        		nextElement.contains("HorizontalBone") ||
+		        		nextElement.contains("VertivalBone")){
+		        	 this.Spell.setLocation(nextPos);
+			         this.tileMap[nextPos.x - 1][nextPos.y - 1] = this.Spell;
+		        	
 		        }
 		        else {
 		            this.Spell.setLocation(nextPos);

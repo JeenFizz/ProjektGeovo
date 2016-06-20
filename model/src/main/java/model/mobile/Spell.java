@@ -13,7 +13,7 @@ public class Spell extends Mobile implements ISpell{
     private int step = 1;
 
     public Spell(Point pos) {
-        super("../model/src/main/java/model/sprite/fireball_1.png", true, pos);
+        super("fireball_1.png", true, pos);
     }
 
     public int getStep() {
