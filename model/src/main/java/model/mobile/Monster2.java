@@ -39,7 +39,7 @@ public class Monster2 extends Mobile implements IMonster {
                 direction = MobileOrder.Down;
             }
         }else{
-        		direction = MobileOrder.RightDown;
+        		direction = MobileOrder.random();
         	}
 		return direction;
 }
