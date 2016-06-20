@@ -79,14 +79,19 @@ public class Model extends Observable implements IModel {
 		return this.map;
 	}
 
-
+/**
+ * 
+ * @param map
+ */
 	private void setMap(final String map) {
 		this.map = map;
 		this.setChanged();
 		this.notifyObservers();
 	}
 
-
+/*
+ * load the map
+ */
 	public void loadMap(String key) {
 		try {
 			final DAOLoadMap daoLoadMap = new DAOLoadMap(DBConnection.getInstance().getConnection());

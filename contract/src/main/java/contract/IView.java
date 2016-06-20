@@ -13,13 +13,30 @@ public interface IView {
 	 */
 	void setController(IController controller);
 	
+
 	void repaint();
 
+	/**
+	 * 
+	 * @return
+	 */
 	int getHeight();
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	int getWidth();
 	
+	/**
+	 * 
+	 * @param message
+	 */
 	void showdiemessage(final String message);
 	
+	/**
+	 * 
+	 * @param message
+	 */
 	void Winmessage(final String message);
 }

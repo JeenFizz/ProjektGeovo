@@ -3,6 +3,7 @@ package controller;
 import java.awt.*;
 
 
+
 import java.util.*;
 import contract.*;
 
@@ -36,10 +37,10 @@ public class Controller implements IController , Observer {
 	
 	 private boolean dead = false;
 
+	
 	 public IElement[][] getTileMap() {
 	        return tileMap;
 	    }
-	 
 	 
 	
 
@@ -62,11 +63,13 @@ public class Controller implements IController , Observer {
 	
 	
 	
-	/**
+	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see contract.IController#start()
 	 */
+	
+
 	public void start() {
         this.orderPerform(ControllerOrder.MENU);
 
@@ -74,6 +77,7 @@ public class Controller implements IController , Observer {
         while (true) {
            
 
+    /*  test if the hero is dead if it true show a die message and change the level to the first level and reset the score*/    	
             if(this.dead) {
                 this.model.loadMap("MAP1");
                 this.view.showdiemessage(String.format("YOU DIED! You made a score of : %d\nPress OK to restart the game", this.score));
@@ -81,12 +85,14 @@ public class Controller implements IController , Observer {
                 this.score = 0;
             }
 
+           
             for (Object o : this.monsters.entrySet()) {
                 Map.Entry pair = (Map.Entry) o;
                 IMonster monster = (IMonster) pair.getValue();
                 this.moveMonster(monster);
             }
 
+            /* repaint the map */
             this.view.repaint();
 
             try {
@@ -148,14 +154,14 @@ public class Controller implements IController , Observer {
 				Point pos = new Point(i, j);
 
                 IElement element = this.model.element(c, pos);
-                if(c == '@') { //L @
+                if(c == '@') { //Lorann
                     this.dead = false;
                     this.hero = (IHero) element;
                 }
-                if(c == 'A' || c == 'B' || c == 'C' || c == 'D') { // 1 2 3 4 ABCD
+                if(c == 'A' || c == 'B' || c == 'C' || c == 'D') { // Monster A , B ,C ,D
                     IMonster monster = (IMonster) element;
                     this.monsters.put(monster.getClass().getSimpleName(), monster);
-                }if(c == 'Y') {//C Y
+                }if(c == 'Y') {//Closed door
                     this.posDoor = pos.getLocation();
                 }
 
@@ -238,9 +244,13 @@ public class Controller implements IController , Observer {
 		
 	}
 	
-		/** Checks if the hero is trying to move out of the
+		/* Checks if the hero is trying to move out of the
 		 *  map then checks if it encounters an object which permeability is blocking 
 		 *  then applies the position change if the hero can move*/
+	/**
+	 * 
+	 * @param order
+	 */
 		private void moveHero(MobileOrder order) {
 	        Point pos = this.hero.getPos();
 	        this.hero.move(order, tileMap, this.view);
@@ -249,7 +259,12 @@ public class Controller implements IController , Observer {
 	        pos = this.hero.getPos();
 	        
 	        String elementName = this.tileMap[pos.x][pos.y].getClass().getSimpleName();
-	        
+	        /* test the next element for kill the hero if he meet the monster" , 
+	         * open the door if he pick the crystal ball , 
+	         * kill the hero if he attempts to go in the closed door
+	         * if the hero go in the open door change level
+	         * test if the level is superior than five and when is true show a Win message and restart the game 
+	         * give point when you walk on a purse*/
 	        if(elementName.contains("Monster")) {
 	            this.dead = true;
 	        } else if (elementName.contains("Crystal") && this.posDoor != null) {
@@ -274,7 +289,11 @@ public class Controller implements IController , Observer {
 	        this.view.repaint();
 	    }
 		
-		
+		/**
+		 * 
+		 * @param monster
+		 */
+		/* */
 		private void moveMonster(IMonster monster) {
 	        Point pos = monster.getPos().getLocation();
 	        Point nextPos = this.computeNextPos(
@@ -283,10 +302,11 @@ public class Controller implements IController , Observer {
 	                        this.tileMap),
 	                pos);
 	        if(nextPos != pos) {
-	            String element = tileMap[nextPos.x][nextPos.y].getClass()
-	                    .getSimpleName();
+	            String element = tileMap[nextPos.x][nextPos.y].getClass().getSimpleName();
+	            /* Kill the hero if the monster go to on the hero*/
 	            if(element.contains("Hero")) {
 	                this.dead = true;
+	               /* if the monster doesn't go to an another monster , a purse , a door or a crystal do the deplacement of the monster */
 	            } else if(!element.contains("Monster") &&
 	                    !element.contains("Purse") &&
 	                    !element.contains("Door") &&
@@ -398,6 +418,8 @@ public class Controller implements IController , Observer {
 		        this.view.repaint();
 		    }
 		 
+		 /* the fireball spell
+		  * set a F in the square */
 		 
 		 private void spell() {
 		        if(this.Spell != null)
@@ -415,21 +437,31 @@ public class Controller implements IController , Observer {
 		    }
 		        
 		    
-
+		 /* move the fireball*/
 		    private void movespell() {
 		        Point currentPos = this.Spell.getPos().getLocation();
-		        this.Spell.animate();
+		        this.Spell.animate();//fireball animation go to spell class in model/mobile to see it*/
 		        Point nextPos = this.computeNextPos(this.Spell.getDirection(), currentPos);
 
 		        this.checkspell(nextPos);
 
 		        this.tileMap[currentPos.x][currentPos.y] = model.element(' ', currentPos.getLocation());
 
-		        if(this.Spell != null && this.Spell.getStep() > 5) { // range of eight case
+		        if(this.Spell != null && this.Spell.getStep() > 5) { // range of 5 squares
 		            this.endspell();
 		        }
 		    }
 		    
+		    /**
+		     * 
+		     *  
+		     * @param nextPos
+		     */
+		    
+		    /*
+		     * check the next square of the fireball :
+		     *  	if he meet an monster destroy it and add 500 points
+		     */
 		    
 		    private void checkspell(Point nextPos) {
 		        String nextElement = this.tileMap[nextPos.x][nextPos.y].getClass().getSimpleName();
@@ -450,6 +482,9 @@ public class Controller implements IController , Observer {
 		        }
 		    }
 
+		    /* destroy spell
+		     * 
+		     */
 		    private void endspell() {
 		        if(this.Spell != null) {
 		            Point pos = this.Spell.getPos().getLocation();

@@ -23,7 +23,7 @@ public abstract class Element implements IElement {
     }
     
     /* allow us to load sprite from a package with a pathname */
-
+ //show pathname to ensure the path and display error if it have ones
     protected void loadSprite(String path) {
         try {
             this.image = ImageIO.read(new File(path));
@@ -33,11 +33,19 @@ public abstract class Element implements IElement {
         }
     }
 
+    /*
+     * (non-Javadoc)
+     * @see contract.IElement#getImage()
+     */
     public BufferedImage getImage()
     {
         return this.image;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see contract.IElement#getPermeability()
+     */
     public boolean getPermeability()
     {
         return permeability;

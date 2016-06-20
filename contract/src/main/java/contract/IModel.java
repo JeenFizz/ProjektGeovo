@@ -33,5 +33,11 @@ public interface IModel {
 	 */
 	void loadMap(String key);
 
+	/**
+	 * 
+	 * @param c
+	 * @param pos
+	 * @return
+	 */
 	IElement element(char c, Point pos);
 }

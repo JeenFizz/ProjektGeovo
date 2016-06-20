@@ -1,0 +1,24 @@
+-classpath
+'C:/Users/drac2_000/git/ProjektGeovo/contract/target/classes;C:/Users/drac2_000/git/ProjektGeovo/view/target/classes;C:/Users/drac2_000/git/ProjektGeovo/model/target/classes;C:/Users/drac2_000/git/ProjektGeovo/controller/target/classes;C:/Users/drac2_000/git/ProjektGeovo/main/target/classes;C:/Users/drac2_000/git/ProjektGeovo/controller/target/classes;C:/Users/drac2_000/.m2/repository/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar;C:/Users/drac2_000/git/ProjektGeovo/view/target/classes;C:/Users/drac2_000/git/ProjektGeovo/model/target/classes;C:/Users/drac2_000/git/ProjektGeovo/contract/target/classes'
+-encoding
+'UTF-8'
+-private
+-sourcepath
+'C:/Users/drac2_000/git/ProjektGeovo/contract/src/main/java;C:/Users/drac2_000/git/ProjektGeovo/view/src/main/java;C:/Users/drac2_000/git/ProjektGeovo/model/src/main/java;C:/Users/drac2_000/git/ProjektGeovo/controller/src/main/java;C:/Users/drac2_000/git/ProjektGeovo/main/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2016. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/drac2_000/git/ProjektGeovo/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Master POM 0.0.1-SNAPSHOT API'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' 'C:/Users/drac2_000/git/ProjektGeovo/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'Master POM 0.0.1-SNAPSHOT API'
