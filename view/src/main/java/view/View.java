@@ -1,6 +1,7 @@
 package view;
 
-import java.awt.event.KeyEvent;
+import java.awt.event.KeyEvent
+;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;

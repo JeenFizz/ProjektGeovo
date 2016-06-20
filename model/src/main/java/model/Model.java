@@ -1,6 +1,7 @@
 package model;
 
-import java.awt.*;
+import java.awt.*
+;
 
 import contract.IMobile;
 import java.sql.SQLException;

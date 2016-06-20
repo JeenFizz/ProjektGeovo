@@ -1,24 +1,7 @@
-﻿-- phpMyAdmin SQL Dump
--- version 4.5.4.1
--- http://www.phpmyadmin.net
---
--- test Client :  localhost
--- Généré le :  Lun 20 Juin 2016 à 07:50
--- Version du serveur :  5.7.11
--- Version de PHP :  5.6.18
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
+﻿
 CREATE DATABASE jpublankproject;
 
-USE jpublankprojec';
+USE jpublankproject;
 
 --
 -- Base de données :  `jpublankproject`
@@ -35,6 +18,8 @@ SELECT * FROM map WHERE map_id = p_id$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `loadmapByKey` (IN `p_key` VARCHAR(50))  NO SQL
 SELECT * FROM jpublankproject.map where `map_name`=p_key$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateScoreNickname` (IN `points` INT(15), IN `p_nickname` VARCHAR(15))  NO SQL
+INSERT INTO score (score, nickname) VALUES(points, p_nickname)$$
 
 DELIMITER ;
 
@@ -81,6 +66,3 @@ ALTER TABLE `map`
 --
 ALTER TABLE `map`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

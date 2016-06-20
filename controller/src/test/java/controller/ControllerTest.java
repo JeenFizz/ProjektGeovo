@@ -1,5 +1,6 @@
 package controller;
 
+
 import static org.junit.Assert.*;
 
 import javax.swing.text.View;
@@ -10,14 +11,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import contract.IModel;
-import contract.IView;
+import contract.*;
+
 
 
 
 public class ControllerTest {
 	
-	private Controller controller ;
+	private IModel model;
+    private IView view;
+    private IController controller;
+    private IElement[][] expectedMap;
 	
 	 
 
@@ -31,8 +35,10 @@ public class ControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
-		this.controller = new Controller(new View(),new Model());
+		this.model = new Model();
+        this.view = new View(this.model);
+        this.controller = new Controller(this.view, this.model);
+        this.view.setController(controller);
 	}
 
 	@After
@@ -59,9 +65,42 @@ public class ControllerTest {
 		//pour les getteurs faire des assertsNotnUll
 	}
 
+	
+	
+	
 	@Test
 	public void testParser() {
 		fail("Not yet implemented");
+	}
+	
+	 @Test
+	    public void TestParserLoadMap() throws Exception {
+	        this.model.loadMap("TEST");
+	        IElement[][] map = this.controller.parser(
+	                this.model.getMap()
+	        );
+
+	        assertEquals(this.expectedMap.length, map.length);
+	        for (int i = 0; i < map.length; i++){
+	            assertEquals(this.expectedMap[i].length, map[i].length);
+	            for (int j = 0; j < map[i].length; j++){
+	                assertEquals(this.expectedMap[i][j].getClass().getCanonicalName(),
+	                        map[i][j].getClass().getCanonicalName());
+	            }
+	        }
+	    }
+
+	    @Test
+	    public void TestComputeNextPosUp() throws Exception {
+	        this.controller.orderPerform(ControllerOrder.WORKSHOP);
+	        Point nextPos = this.controller.computeNextPos(
+	                MobileOrder.Up,
+	                new Point(5, 5)
+	        );
+	        assertEquals(
+	                new Point(4, 5),
+	                nextPos
+	        );
 	}
 
 	@Test
