@@ -130,15 +130,6 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @param model
 	 *          the model
 	 */
-	/* private void buildViewFrame(final IModel model) {
-		this.setModel(model);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
-		this.addKeyListener(this);
-		this.setContentPane(new ViewPanel(this));
-		this.setSize(1020 + this.getInsets().left + this.getInsets().right, 720 + this.getInsets().top + this.getInsets().bottom);
-		this.setLocationRelativeTo(null);
-	} TEST */
 	
 	private void buildViewFrame(final IModel model) {
 		  this.viewPanel = new ViewPanel(this);

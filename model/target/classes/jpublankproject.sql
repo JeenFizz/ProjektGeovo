@@ -35,8 +35,6 @@ SELECT * FROM map WHERE map_id = p_id$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `loadmapByKey` (IN `p_key` VARCHAR(50))  NO SQL
 SELECT * FROM jpublankproject.map where `map_name`=p_key$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateScoreNickname` (IN `points` INT(15), IN `p_nickname` VARCHAR(15))  NO SQL
-INSERT INTO score (score, nickname) VALUES(points, p_nickname)$$
 
 DELIMITER ;
 
