@@ -454,12 +454,6 @@ public class Controller implements IController , Observer {
 		                nextElement.contains("Purse") ||
 		                nextElement.contains("Crystal")) {
 		            this.Spell = null;
-		        }else if(nextElement.contains("Bone") || 
-		        		nextElement.contains("HorizontalBone") ||
-		        		nextElement.contains("VertivalBone")){
-		        	 this.Spell.setLocation(nextPos);
-			         this.tileMap[nextPos.x - 1][nextPos.y - 1] = this.Spell;
-		        	
 		        }
 		        else {
 		            this.Spell.setLocation(nextPos);
