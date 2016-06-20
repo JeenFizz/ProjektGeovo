@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.5.1
+-- version 4.5.4.1
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Jeu 02 Juin 2016 à 23:02
+-- Client :  localhost
+-- Généré le :  Lun 20 Juin 2016 à 07:50
 -- Version du serveur :  5.7.11
--- Version de PHP :  5.6.19
+-- Version de PHP :  5.6.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,14 +19,23 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `jpublankproject`
 --
-CREATE DATABASE `jpublankproject` ;
-
-USE `jpublankproject` ;
 
 DELIMITER $$
 --
 -- Procédures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualScore` (IN `points` INT(15), IN `p_nickname` VARCHAR(15), IN `w_nickname` VARCHAR(15))  NO SQL
+BEGIN
+    CALL UpdateScoreNickname(points, p_nickname);
+    CALL ShowActualUserScore(w_nickname);
+  END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddShowScore` (IN `points` INT(15), IN `p_nickname` VARCHAR(15))  NO SQL
+BEGIN
+    CALL UpdateScoreNickname(points, p_nickname);
+    CALL Show5BestUsers;
+  END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `helloworldById` (IN `p_id` INT)  READS SQL DATA
     SQL SECURITY INVOKER
 SELECT * FROM helloworld WHERE id = p_id$$
@@ -34,6 +43,31 @@ SELECT * FROM helloworld WHERE id = p_id$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `HelloworldByKey` (IN `p_key` VARCHAR(2))  READS SQL DATA
     SQL SECURITY INVOKER
 SELECT * FROM jpublankproject.helloworld where `key`=p_key$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `loadmapById` (IN `p_id` INT)  NO SQL
+SELECT * FROM map WHERE map_id = p_id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `loadmapByKey` (IN `p_key` VARCHAR(50))  NO SQL
+SELECT * FROM jpublankproject.map where `map_name`=p_key$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Show5BestUsers` ()  NO SQL
+SELECT SUM(score), nickname FROM score GROUP BY nickname ORDER BY score DESC LIMIT 5$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ShowActualUserScore` (IN `w_nickname` VARCHAR(15))  NO SQL
+SELECT SUM(score), nickname AS Score FROM score WHERE nickname = w_nickname$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ShowNicknamesScores` ()  NO SQL
+SELECT nickname, score
+  FROM score
+  ORDER BY score DESC LIMIT 5$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ShowScores` ()  NO SQL
+SELECT nickname, score
+  FROM score
+  GROUP BY score ORDER BY score DESC LIMIT 5$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateScoreNickname` (IN `points` INT(15), IN `p_nickname` VARCHAR(15))  NO SQL
+INSERT INTO score (score, nickname) VALUES(points, p_nickname)$$
 
 DELIMITER ;
 
@@ -45,9 +79,9 @@ DELIMITER ;
 
 CREATE TABLE `helloworld` (
   `id` int(11) NOT NULL,
-  `key` varchar(2) NOT NULL,
-  `message` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `key` varchar(2) CHARACTER SET latin1 NOT NULL,
+  `message` varchar(100) CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `helloworld`
@@ -58,6 +92,31 @@ INSERT INTO `helloworld` (`id`, `key`, `message`) VALUES
 (2, 'FR', 'Bonjour le monde'),
 (3, 'DE', 'Hallo Welt'),
 (4, 'ID', 'Salamat pagi dunia');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `map`
+--
+
+CREATE TABLE `map` (
+  `id` int(11) NOT NULL,
+  `map_name` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `map` text CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `map`
+--
+
+INSERT INTO `map` (`id`, `map_name`, `map`) VALUES
+(1, 'MAP1', 'O---O--------------O\nI   I              I\nI I I     -O--O-O  I\nY I   O--- I  I I  I\nO-O-O I111O-O-O O- I\nI   I O---I@I   I  I\nI I I I I I I --O -O\nI I I I     I   I  I\nI IQI I I1I O-- I  I\nI O-O-O O-O      --O\nI         I        I\nO---------O--------O'),
+(2, 'MAP2', 'O------------------O\nI     O ---@       I\nI  OOO I11O------- I\nI   OOOI1OO        I\nO--O   IOO  -------O\nI      IO          I\nI -----O---------O I\nI      I         I I\nI I A          I1I I\nI I    I       O-O I\nIQI    I           I\nO-O----O---------OYO'),
+(3, 'MAP3', 'O------------------O\nIQO O  O           I\nI O O O OOOOO      I\nIO O OOO1O1A       I\nO-------O-O------- I\nI        @O   O1O  I\nI O-----OYO O OO  OI\nI      BI O OO OOO I\nI O--O--OO O OO O  I\nI I  I  IOOO O OO OI\nI  I   I     O   O1I\nO--O---O-----------O'),
+(4, 'MAP4', 'O------------------O\nI       1    AI    I\nI OO    --OYO-O OO I\nI  OO     OOO  IO OI\nIOO O          IOO I\nIBO O          IO  I\nI O O1------O--O --O\nI  OOI      I      I\nI OOQI  C   I      I\nIO O I      I      I\nI1   I1     I     @I\nO----O------O------O'),
+(5, 'MAP5', 'O------O-----O-----O\nIA     I11111I     I\nI     I  111  I    I\nI    I         I   I\nIB   I  II II  I   I\nI  Q I I1I I1I I  @I\nI    I III III I   I\nIC    I  I I  I    I\nI      I     I     I\nI      I I I I     I\nID     I I I I     I\nO------O-O-O-O-----O'),
+(10, 'TEST', 'OQ-IYX1\n@\nABCD'),
+(17, 'MENU', 'O------------------O\nI         @        I\nI  O-O--------O-O  I\nI    I        I    I\nO--O I        I O--O\nX  O I        I O  X\nOO   I        I   OO\nOO---O        O---OO\nI    I        I    I\nO----O--------O----O\nI         D        I\nO------------------O');
 
 --
 -- Index pour les tables exportées
@@ -71,6 +130,12 @@ ALTER TABLE `helloworld`
   ADD UNIQUE KEY `key_UNIQUE` (`key`);
 
 --
+-- Index pour la table `map`
+--
+ALTER TABLE `map`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
@@ -79,6 +144,11 @@ ALTER TABLE `helloworld`
 --
 ALTER TABLE `helloworld`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `map`
+--
+ALTER TABLE `map`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -55,7 +55,7 @@ public class Controller implements IController , Observer {
 		this.setView(view);
 		this.setModel(model);
 		this.tileMap = this.parser(this.model.getMap());
-        this.hero = (IHero) model.element('L', new Point());
+        this.hero = (IHero) model.element('@', new Point());
         model.getObservable().addObserver(this);
 	}
 
@@ -159,14 +159,14 @@ public class Controller implements IController , Observer {
 				Point pos = new Point(i, j);
 
                 IElement element = this.model.element(c, pos);
-                if(c == 'L') { //L @
+                if(c == '@') { //L @
                     this.dead = false;
                     this.hero = (IHero) element;
                 }
-                if(c == '1' || c == '2' || c == '3' || c == '4') { // 1 2 3 4 ABCD
+                if(c == 'A' || c == 'B' || c == 'C' || c == 'D') { // 1 2 3 4 ABCD
                     IMonster monster = (IMonster) element;
                     this.monsters.put(monster.getClass().getSimpleName(), monster);
-                }if(c == 'C') {//C Y
+                }if(c == 'Y') {//C Y
                     this.posDoor = pos.getLocation();
                 }
 
@@ -264,7 +264,7 @@ public class Controller implements IController , Observer {
 	        if(elementName.contains("Monster")) {
 	            this.dead = true;
 	        } else if (elementName.contains("Crystal") && this.posDoor != null) {
-	            this.tileMap[this.posDoor.x][this.posDoor.y] = model.element('O', this.posDoor);
+	            this.tileMap[this.posDoor.x][this.posDoor.y] = model.element('X', this.posDoor);//X O
 	        }else if(elementName.contains("ClosedDoor")) {
 	            this.dead = true;
 	        } else if (elementName.contains("OpenDoor")) {

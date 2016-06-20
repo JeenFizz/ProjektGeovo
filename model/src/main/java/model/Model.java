@@ -31,32 +31,32 @@ public class Model extends Observable implements IModel {
 	 */
 	public IElement element(char c, Point pos) {
 		switch (c){
-			case 'B'://0
+			case 'O'://0 B
 				return new Bone();
-			case 'K'://Q
+			case 'Q'://Q K
 				return new CrystalBall();
-			case 'H'://-
+			case '-'://- H
 				return new HorizontalBone();
-			case 'V'://I
+			case 'I'://I V
 				return new VerticalBone();
-			case 'C'://Y
+			case 'Y'://Y C
 				return new ClosedDoor();
-			case 'O'://X
+			case 'X'://X O
 				return new OpenDoor();
-			case 'P'://1
+			case '1'://1 P
 				return new Purse();
-			case 'L'://@
+			case '@'://@ L
 				return new Hero(pos);
             case 'F':
                 return new Spell(pos); 
              
-			case '1'://A
+			case 'A'://A 1
 				return new Monster1(pos);
-			case '2'://B
+			case 'B'://B
 				return new Monster2(pos);
-			case '3':
+			case 'C':
 				return new Monster3(pos);
-			case '4':
+			case 'D':
 				return new Monster4(pos);
 			default:
 				return new Empty();
