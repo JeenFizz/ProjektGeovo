@@ -1,5 +1,8 @@
 # JPU-BlankProject
 Base de démarrage pour le projet Jave/POO/UML des 1ières années Exia-Cesi
+# Use the numpad to move Lorann
+4,8,6,2 for up down right and left
+7,9,1,3 for diagonals 
 # Map Legend
 - for the map countours :
     - 'O' for a patella the round bone
