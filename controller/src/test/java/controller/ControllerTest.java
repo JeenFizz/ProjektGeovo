@@ -3,6 +3,8 @@ package controller;
 
 import static org.junit.Assert.*;
 
+import java.awt.Point;
+
 import javax.swing.text.View;
 
 import org.junit.After;
@@ -10,6 +12,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 
 import contract.*;
 
@@ -44,6 +47,16 @@ public class ControllerTest {
 	@After
 	public void tearDown() throws Exception {
 	}
+	
+	@Test
+    public void TestOrderPerformMAP1() throws Exception {
+        this.controller.orderPerform(ControllerOrder.MAP1);
+        assertEquals(1, this.controller.getLevel());
+        assertEquals("O---O--------------O\n" + "I   I              I\n" + "I I I     -O--O-O  I\n" +
+        "Y I   O--- I  I I  I\n" + "O-O-O I111O-O-O O- I\n" + "I   I O---I@I   I  I\n" + "I I I I I I I --O -O\n" +
+        		"I I I I     I   I  I\n" + "I IQI I I1I O-- I  I\n" + "I O-O-O O-O      --O\n" +"I         I        I",
+                this.model.getMap());
+}
 
 	
 
@@ -57,21 +70,27 @@ public class ControllerTest {
 	@Test
 	public void testStart() {
 		fail("Not yet implemented");
-		//tester si mon level est entre 1 et 5
-		//tester si l'on passe au niveau suivant
-		//testet si l'appui sur une touche 
-		// tester si le joueur s'est bien deplacé
-		//tester si le joueur est sur la map
-		//pour les getteurs faire des assertsNotnUll
+		
 	}
 
 	
 	
 	
 	@Test
-	public void testParser() {
-		fail("Not yet implemented");
-	}
+	public void testParser() throws Exception {
+        IElement[][] map = this.controller.parser("BVHPL\n" +
+                "1234 \n" +
+                "CO   ");
+
+        assertEquals(this.expectedMap.length, map.length);
+        for (int i = 0; i < map.length; i++){
+            assertEquals(this.expectedMap[i].length, map[i].length);
+            for (int j = 0; j < map[i].length; j++){
+                assertEquals(this.expectedMap[i][j].getClass().getCanonicalName(),
+                        map[i][j].getClass().getCanonicalName());
+            }
+        }
+}
 	
 	 @Test
 	    public void TestParserLoadMap() throws Exception {
@@ -92,7 +111,7 @@ public class ControllerTest {
 
 	    @Test
 	    public void TestComputeNextPosUp() throws Exception {
-	        this.controller.orderPerform(ControllerOrder.WORKSHOP);
+	        this.controller.orderPerform(ControllerOrder.MAP1);
 	        Point nextPos = this.controller.computeNextPos(
 	                MobileOrder.Up,
 	                new Point(5, 5)
@@ -103,14 +122,8 @@ public class ControllerTest {
 	        );
 	}
 
-	@Test
-	public void testOrderPerform() {
-		fail("Not yet implemented");
-	}
+	  
 
-	@Test
-	public void testUpdate() {
-		fail("Not yet implemented");
-	}
+	
 
 }

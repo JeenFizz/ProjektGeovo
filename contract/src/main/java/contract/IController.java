@@ -1,5 +1,7 @@
 package contract;
 
+import java.awt.Point;
+
 /**
  * The Interface IController.
  *
@@ -23,5 +25,7 @@ public interface IController {
 	IElement[][] getTileMap();
 
 	IElement[][] parser(String tilemap);
+
+
 	
 }
